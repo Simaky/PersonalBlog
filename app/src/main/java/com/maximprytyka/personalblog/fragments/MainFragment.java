@@ -42,13 +42,11 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.main_fragment,container,false);
+        View v = inflater.inflate(R.layout.main_fragment, container, false);
 
         postsList = new ArrayList<>();
         recyclerView = v.findViewById(R.id.recycleviewid);
         jsonrequest();
-
-
 
 
 //        final FragmentManager fm = getFragmentManager();
@@ -84,6 +82,7 @@ public class MainFragment extends Fragment {
                         posts.setPubdate(jsonObject.getString("pubdate"));
                         posts.setViews(jsonObject.getString("views"));
                         posts.setCategorie_id(jsonObject.getString("categorie_id"));
+                        posts.setId(jsonObject.getInt("id"));
 
                         postsList.add(posts);
 
@@ -107,9 +106,9 @@ public class MainFragment extends Fragment {
 
     }
 
-    private void setupRecycleView(List<Posts> lstPosts){
+    private void setupRecycleView(List<Posts> lstPosts) {
 
-        RecycleViewAdapter myAdapter = new RecycleViewAdapter(getActivity(),lstPosts);
+        RecycleViewAdapter myAdapter = new RecycleViewAdapter(getActivity(), lstPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         recyclerView.setAdapter(myAdapter);

@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,8 @@ import com.maximprytyka.personalblog.fragments.MainFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private FragmentManager fm = getFragmentManager();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +48,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.setCheckedItem(R.id.nav_home);
+
+        fm.beginTransaction().replace(R.id.frame, new MainFragment()).commit();
+
+
     }
 
     @Override
@@ -82,22 +92,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        FragmentManager fm = getFragmentManager();
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            fm.beginTransaction().replace(R.id.frame, new MainFragment()).commit();
-            setTitle("Posts List");
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_home) {
+            fm.beginTransaction().replace(R.id.frame, new MainFragment()).addToBackStack(null).commit();
+        } else if (id == R.id.nav_sport) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_nature) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_programing) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_gaming) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_anime) {
 
         }
 
