@@ -5,3 +5,4 @@ Functions:
  * Get list of items from REST API
  * Show list of items with header, image and short text.
  * Open item to full screen to read full text.
+ * Support comments.
